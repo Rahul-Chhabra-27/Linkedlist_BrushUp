@@ -50,6 +50,24 @@ class LinkedList {
             tail = temp;
         }
     }
+    void addNodeToFront(int val) {
+        Node *node = new Node(val);
+
+        if (head == NULL) {
+            head = node;
+            tail = node;
+        }
+        else {
+            node->next = head;
+            head = node;
+        }
+    }
+    void deleteNodeFromFront() {
+        
+        if (head == NULL) return;
+        head = head->next;
+
+    }
     void traverse() {
         Node *temp = head;
         while(temp != NULL) {
@@ -57,6 +75,15 @@ class LinkedList {
             temp = temp->next;
         }
         cout << "\n";
+    }
+    int countNodesInAList() {
+        int countNodes = 0;
+        Node *temp = head;
+        while(temp != NULL) {
+            countNodes++;
+            temp = temp->next;
+        }
+        return countNodes;
     }
 };
 
@@ -70,7 +97,21 @@ int main(int argc, char const *argv[])
     ll->addNodeToLast(4);
     ll->addNodeToLast(5);
     ll->traverse();
-    ll->deleteLastNode();
+
+    ll->addNodeToFront(6);
+    ll->addNodeToFront(7);
+
     ll->traverse();
+
+
+    ll->deleteNodeFromFront();
+    ll->deleteLastNode();
+
+    ll->traverse();
+    // cout << ll->countNodesInAList() << "\n";
+    // ll->traverse();
+    // ll->deleteLastNode();
+    // cout << ll->countNodesInAList();
+    // ll->traverse();
     return 0;
 }
